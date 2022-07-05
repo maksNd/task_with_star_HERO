@@ -5,15 +5,16 @@ class Hero:
     def __init__(self, name):
         self.level_dict = level_dict
         self.name = name
-        self._health = level_dict[1]["health"]
+        self._level = 1
+        self._health = 100
         self.experience = 0
-        self._level = level_dict[1]["level"]
+        self._experience_border = 15
 
     def add_experience(self, experience_points):
         """добавляет опыт, при этом уровень и здоровье пересчитываются"""
         self.experience += experience_points
 
-        while self.experience > self.level_dict[self.level]["experience"] - 1:
+        while self.experience > self._experience_border:
             if self.level == len(self.level_dict):
                 break
             self.__reach_next_level()
@@ -34,5 +35,10 @@ class Hero:
         return self._health
 
     def __reach_next_level(self):
+
         self._level += 1
-        self._health = self.level_dict[self.level]["health"]
+        self._health += int(self._health / 2)
+        self._experience_border *= 2
+
+        while self._health % 10 != 0:
+            self._health += 1
