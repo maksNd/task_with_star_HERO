@@ -34,5 +34,5 @@ class Hero:
         return self._health
 
     def __reach_next_level(self):
-        self._level = self.level_dict[self.level + 1]["level"]
+        self._level += 1
         self._health = self.level_dict[self.level]["health"]
