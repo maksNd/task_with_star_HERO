@@ -1,9 +1,11 @@
 class LevelManager:
 
+    __current_level = 1
+
     def __init__(self, max_level: int):
         self.max_level = max_level
         self._levels_instruction = self.__create_levels_instruction()
-        #self._level = level
+        self._level = __current_level
         self._health = None
         self._current_experience_border = None
 
